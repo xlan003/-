@@ -1,0 +1,52 @@
+数组是存放在连续内存空间上的相同类型数据的集合。
+
+需要两点注意的是
+
+数组下标都是从0开始的。
+数组内存空间的地址是连续的
+正是因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素的时候，就难免要移动其他元素的地址。
+
+数组的元素是不能删的，只能覆盖。
+
+二维数组在内存的空间地址是连续的
+
+数组：连续的内存地址，连续的数组下标，连续存储的元素
+
+[704 二分查找] (https://leetcode.cn/problems/binary-search/submissions/)
+二分查找之前做过，一次过。
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int left = 0, right = nums.size() - 1, mid = (right - left) / 2 + left;
+        while(left <= right){
+            if(nums[mid] < target)
+            left = mid + 1;
+            if(nums[mid] > target)
+            right = mid - 1;
+            if(nums[mid] == target)
+            return mid;
+            mid = (right - left) / 2 + left;
+            }
+        return -1;
+    }
+};
+
+[27 移除元素]（https://leetcode.cn/problems/remove-element/submissions/）
+自己写的代码索引容易出数组
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int size = nums.size();
+        for (int i = 0; i < size; i++) {
+            if (nums[i] == val) { // 发现需要移除的元素，就将数组集体向前移动一位
+                for (int j = i + 1; j < size; j++) {
+                    nums[j - 1] = nums[j];
+                }
+                i--; // 因为下标i以后的数值都向前移动了一位，所以i也向前移动一位
+                size--; // 此时数组的大小-1
+            }
+        }
+        return size;
+
+    }
+};
