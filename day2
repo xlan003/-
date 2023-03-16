@@ -1,0 +1,29 @@
+977.有序数组的平方
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        int left = 0 , right = nums.size() - 1, n = nums.size() - 1;
+        vector<int> result(n + 1, 0);
+        while(left <= right){
+            if(nums[left] * nums[left] < nums[right] * nums[right]){
+                result[n--] = nums[right] * nums[right];
+                right--;
+            }
+            else{
+                result[n--] = nums[left] * nums[left];
+                left++;
+            }
+        }
+        return result;
+
+    }
+};
+使用暴力写法比较容易，主要要注意sort的用法
+双指针解决有序数组的平方，if判断的先后顺序，会导致结果正确与否。 还没分析出具体原因
+
+977.有序数组的平方
+使用双指针或者滑动窗口法解决
+
+59.螺旋矩阵
+主要注意边界，统一标准
